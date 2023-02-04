@@ -1,0 +1,146 @@
+<html>
+  <head>
+    <title>Hash Computation</title>
+    <style>
+      .main-container {
+        display: flex;
+        justify-content: center;
+      }
+      .header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin: 0;
+  }
+      .left-section {
+        background-color: lightgray;
+        padding: 40px;
+        width: 30%;
+        float: left;
+        font-family: Arial, sans-serif;
+        font-size: 1.2em;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        margin-right: 20px;
+    }
+      .right-section {
+        width: 70%;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .input-section {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .input-section textarea {
+        padding: 20px;
+        font-size: 16px;
+        width: 500px;
+        height: 200px;
+        margin-bottom: 20px;
+      }
+      .input-section button {
+        padding: 10px 20px;
+        background-color: blue;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .output-section {
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .output-section h2 {
+        visibility: hidden;
+        margin-bottom: 20px;
+      }
+      .output-section h3 {
+        visibility: hidden;
+        border: 5px solid green;
+        padding: 5px;
+        margin-bottom: 20px;
+      }
+      .left-section h2 {
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.left-section p {
+  margin-bottom: 20px;
+  color: #555;
+  line-height: 1.5;
+}
+
+.left-section ul {
+  margin-top: 20px;
+  list-style-type: square;
+  padding-left: 20px;
+}
+
+.left-section li {
+  margin-bottom: 10px;
+  color: #921e1e;
+}
+</style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+  </head>
+  <body>
+    <div class="main-container">
+        <div class="header">
+            <h1>Hash Generator</h1>
+        </div>
+        <div class="left-section">
+            <h2>What is Hashing?</h2>
+            <ul>
+                <li>Hashing is a cryptographic technique that transforms data into a fixed-length string of characters, called a hash.</li> 
+                <li>hash is unique to the original data, and even a small change in the input data will result in a completely different hash. </li>
+                <li>This property of hash functions provides security and ensures data integrity by allowing us to store the hash instead of the original data and verify its authenticity later.</li>
+            </ul>
+            <h3>Benefits of Hashing:</h3>
+            <ul>
+              <li>Data Integrity: A hash function will always produce the same output for a given input, making it easy to detect any changes to the data.</li>
+              <li>Authenticity: The unique nature of hashes means that it is almost impossible for two different inputs to produce the same hash output.</li>
+              <li>Security: By using hashes instead of original data, sensitive information can be stored securely without the need to expose the actual data.</li>
+            </ul>
+        </div>
+      <div class="right-section">
+        <div class="input-section">
+          <textarea id="input-data"></textarea>
+          <button id="compute-hash-button">Compute Hash</button>
+        </div>
+        <div class="output-section">
+          <h2 id ="hash-label">Hash</h2>
+          <h3 id="output-hash"></h3>
+        </div>
+      </div>
+    </div>
+    <script>
+      const computeHashButton = document.getElementById("compute-hash-button");
+      const inputData = document.getElementById("input-data");
+      const outputHash = document.getElementById("output-hash");
+      const hashLabel = document.getElementById("hash-label");
+      computeHashButton.addEventListener("click", function() {
+        const hash = CryptoJS.SHA256(inputData.value).toString();
+        hashLabel.style.visibility = "visible";
+        outputHash.style.visibility = "visible"
+        outputHash.innerHTML = hash;
+      });
+    </script>
+  </body>
+</html>
