@@ -7,12 +7,12 @@
         justify-content: center;
       }
       .header {
-    background-color: #333;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px 10px 0 0;
-    font-family: Arial, sans-serif;
+        background-color: #882400;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 10px 10px 0 0;
+        font-family: Arial, sans-serif;
   }
   
   .header h1 {
@@ -108,8 +108,8 @@
         <div class="left-section">
             <h2>What is Hashing?</h2>
             <ul>
-                <li>Hashing is a cryptographic technique that transforms data into a fixed-length string of characters, called a hash.</li> 
-                <li>hash is unique to the original data, and even a small change in the input data will result in a completely different hash. </li>
+                <li id="point-fixed-length">Hashing is a cryptographic technique that transforms data into a fixed-length string of characters, called a hash.</li> 
+                <li><div id="point-unique">Hash is unique to the original data</div>, and even a <div id="point-small-change">small change in the input data will result in a completely different hash.</div> </li>
                 <li>This property of hash functions provides security and ensures data integrity by allowing us to store the hash instead of the original data and verify its authenticity later.</li>
             </ul>
             <h3>Benefits of Hashing:</h3>
@@ -135,11 +135,23 @@
       const inputData = document.getElementById("input-data");
       const outputHash = document.getElementById("output-hash");
       const hashLabel = document.getElementById("hash-label");
+      const pointSmallChange = document.getElementById("point-small-change");
+      const pointUnique = document.getElementById("point-unique");
+
       computeHashButton.addEventListener("click", function() {
+        const oldHash = outputHash.innerHTML;
         const hash = CryptoJS.SHA256(inputData.value).toString();
         hashLabel.style.visibility = "visible";
         outputHash.style.visibility = "visible"
         outputHash.innerHTML = hash;
+        if(oldHash==hash){
+          pointUnique.style.color = "green";
+          pointSmallChange.style.color = "#921e1e";
+
+        }else{
+          pointUnique.style.color = "#921e1e";
+          pointSmallChange.style.color = "green";
+        }
       });
     </script>
   </body>
